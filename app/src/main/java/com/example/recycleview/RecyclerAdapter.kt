@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter(
-    private val list: MutableList<Contact>,
+    private val list: MutableList<ContactEntity>,
     // передаём коллбек нажатия на кнопку
     private val onItemClick: (id: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -18,7 +18,7 @@ class RecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = list[position].name
+        holder.textView.text = "${list[position].firstName}  ${list[position].lastName}"
         // обработчик нажатия кнопки
         holder.button.setOnClickListener {
             onItemClick(holder.adapterPosition)
