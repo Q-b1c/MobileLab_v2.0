@@ -16,6 +16,7 @@
         android:id="@+id/button"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple_200"
-        android:text="ⓘ" />
+        android:backgroundTint="@color/white"
+        android:text="ⓘ"
+        android:textColor="#000000" />
 </LinearLayout>

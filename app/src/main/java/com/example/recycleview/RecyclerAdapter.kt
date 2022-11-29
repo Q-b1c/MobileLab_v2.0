@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter(
-    private val list: MutableList<ContactEntity>,
+    private var list: List<ContactEntity>,
     // передаём коллбек нажатия на кнопку
     private val onItemClick: (id: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -27,6 +27,9 @@ class RecyclerAdapter(
 
     override fun getItemCount(): Int {
         return list.size
+    }
+    fun updateAdapter(listUpdate:List<ContactEntity>){
+        list = listUpdate
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
