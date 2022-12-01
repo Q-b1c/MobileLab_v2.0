@@ -28,12 +28,14 @@ class RecyclerAdapter(
     override fun getItemCount(): Int {
         return list.size
     }
-    fun updateAdapter(listUpdate:List<ContactEntity>){
+
+    fun updateAdapter(listUpdate: List<ContactEntity>) {
         list = listUpdate
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView = itemView.findViewById<TextView>(R.id.textView)
+
         // находим кнопку
         val button = itemView.findViewById<TextView>(R.id.button)
     }

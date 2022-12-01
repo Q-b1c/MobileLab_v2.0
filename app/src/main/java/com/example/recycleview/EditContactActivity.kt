@@ -115,7 +115,7 @@ class EditContactActivity : AppCompatActivity() {
                     startActivity(mainActivity)
                     finish()
                 }
-            }else{
+            } else {
                 val toast = Toast.makeText(
                     applicationContext, // контекст
                     "Введены не все данные \uD83D\uDE44",     // текст тоста

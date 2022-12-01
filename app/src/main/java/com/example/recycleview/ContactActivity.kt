@@ -30,17 +30,8 @@ class ContactActivity : AppCompatActivity() {
         setTitle("Contact detail")
 
         fun callPhone(phoneNumber: String) {
-            if (phoneNumber[0] == '7')
-            {
-                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:+$phoneNumber"))
-                startActivity(intent)
-            }
-            else
-            {
-                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
-                startActivity(intent)
-            }
-
+            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
+            startActivity(intent)
         }
 
         fun checkPermission(phoneNumber: String) {
@@ -74,13 +65,13 @@ class ContactActivity : AppCompatActivity() {
             }
         }
 
-        fun dialogYesOrNo( // Можно сделать custom dialog
+        fun dialogYesOrNo(
             activity: Activity,
             title: String,
             message: String,
             listener: DialogInterface.OnClickListener
         ) {
-            val builder = AlertDialog.Builder(activity)
+            val builder = AlertDialog.Builder(activity, R.style.DialogTheme)
             builder.setPositiveButton("Да", DialogInterface.OnClickListener { dialog, id ->
                 dialog.dismiss()
                 listener.onClick(dialog, id)
@@ -138,8 +129,8 @@ class ContactActivity : AppCompatActivity() {
             dialogYesOrNo(
                 this,
                 "Требуется подтверждение",
-                "Удалить контакт ${conEntity.firstName} ${conEntity.lastName}",
-                DialogInterface.OnClickListener {dialog,id ->
+                "Удалить контакт ${conEntity.firstName} ${conEntity.lastName}?",
+                DialogInterface.OnClickListener { dialog, id ->
                     contactDao.delete(contactEntity)
                     val mainActivity = Intent(this, MainActivity::class.java)
                     startActivity(mainActivity)
