@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -53,10 +51,10 @@ class MainActivity : AppCompatActivity() {
             if (ContactFind.text.isEmpty()) {
                 ListOfContacts.clear()
                 ListOfContacts.addAll(contactDao.all)
-                adapter.updateAdapter(ListOfContacts)
+                adapter.update(ListOfContacts)
                 adapter.run { notifyDataSetChanged() }
             } else {
-                adapter.updateAdapter(ListOfContacts.filter {
+                adapter.update(ListOfContacts.filter {
                     ContactFind.text.toString().lowercase() in it.firstName.lowercase() ||
                             ContactFind.text.toString().lowercase() in it.lastName.lowercase()
                 })

@@ -29,7 +29,7 @@ class RecyclerAdapter(
         return list.size
     }
 
-    fun updateAdapter(listUpdate: List<ContactEntity>) {
+    fun update(listUpdate: List<ContactEntity>) {
         list = listUpdate
     }
 

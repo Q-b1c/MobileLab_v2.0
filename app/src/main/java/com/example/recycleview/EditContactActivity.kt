@@ -25,6 +25,7 @@ class EditContactActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_contact)
         setTitle("Edit contact")
 //        val dbHelper = DBHelper(this)
+
         val id = intent.getLongExtra(ContactActivity.EXTRA_KEY, -1)
         val textEditName = findViewById<EditText>(R.id.editTextName)
         val textEditLastName = findViewById<EditText>(R.id.editTextLastName)
@@ -90,8 +91,7 @@ class EditContactActivity : AppCompatActivity() {
         }
         var contactEntity: ContactEntity = ContactEntity()
         buttonDone.setOnClickListener {
-            if ((!textEditName.text.isEmpty()) && (!textEditLastName.text.isEmpty())
-                && (!textEditBirthday.text.isEmpty()) && (!textEditPNumber.text.isEmpty())
+            if ((!textEditName.text.isEmpty()) && (!textEditPNumber.text.isEmpty())
             ) {
                 if (id >= 0)    //update
                 {
@@ -118,7 +118,7 @@ class EditContactActivity : AppCompatActivity() {
             } else {
                 val toast = Toast.makeText(
                     applicationContext, // контекст
-                    "Введены не все данные \uD83D\uDE44",     // текст тоста
+                    "Введите хотя бы имя и номер телефона \uD83D\uDE44",     // текст тоста
                     Toast.LENGTH_SHORT  // длительность показа
                 )
                 toast.show()

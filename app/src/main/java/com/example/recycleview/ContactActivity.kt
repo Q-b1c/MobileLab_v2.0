@@ -29,41 +29,6 @@ class ContactActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
         setTitle("Contact detail")
 
-        fun callPhone(phoneNumber: String) {
-            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
-            startActivity(intent)
-        }
-
-        fun checkPermission(phoneNumber: String) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.CALL_PHONE
-                )
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                // Permission is not granted
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(
-                        this,
-                        Manifest.permission.CALL_PHONE
-                    )
-                ) {
-                    // Show an explanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-                } else {
-                    // No explanation needed, we can request the permission.
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.CALL_PHONE),
-                        42
-                    )
-                }
-            } else {
-                // Permission has already been granted
-                callPhone(phoneNumber)
-            }
-        }
 
         fun dialogYesOrNo(
             activity: Activity,
@@ -96,6 +61,7 @@ class ContactActivity : AppCompatActivity() {
 //                return
 //            }
 //        }
+        val call =Call()
         val id = intent.getLongExtra(MainActivity.EXTRA_KEY, -1)
         val firstNameText = findViewById<TextView>(R.id.textFirstName)
         val lastNameText = findViewById<TextView>(R.id.textLastName)
@@ -116,7 +82,7 @@ class ContactActivity : AppCompatActivity() {
             finish()
         }
         phoneNumberText.setOnClickListener {
-            checkPermission(contactEntity.phoneNumber)
+            call.checkPermission(contactEntity.phoneNumber,this,this)
         }
         buttonEdit.setOnClickListener {
             val startContactActivity = Intent(this, EditContactActivity::class.java)
